@@ -1,0 +1,17 @@
+:root {
+    --keltainen: #f3b409;
+    --musta: #000000;
+    --valkoinen: #ffffffff;
+}
+
+.bg {
+    background-image: url(images/Suisto-backgroud.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    background-attachment: fixed;
+}
+
+.navbar{
+    content: ;
+}
