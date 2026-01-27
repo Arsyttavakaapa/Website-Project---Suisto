@@ -1,0 +1,34 @@
+:root {
+    --keltainen: #f3b509;
+    --keltainen-kuultava: #f3b509e7;
+    --musta: #000000;
+    --valkoinen: #ffffffff;
+}
+h1 {
+    background-color: var(--keltainen-kuultava);
+}
+h2 {
+    font-display: auto;
+}
+.container1, .container2, .container3 {
+    background-color: var(--keltainen-kuultava);
+    margin-left: 320px;
+    margin-right: 320px;
+}
+.full-bleed-keltainen {
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltaista*/
+    box-shadow: 0 0 0 100vmax var(--keltainen);
+    clip-path: inset(0 -100vmax);
+}
+
+.full-bleed-musta {
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --mustaa*/
+    box-shadow: 0 0 0 100vmax var(--musta);
+    clip-path: inset(0 -100vmax);
+}
+
+.full-bleed-keltainen-kuultava{
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltainen-kuultavaa*/
+    box-shadow: 0 0 0 100vmax var(--keltainen-kuultava);
+    clip-path: inset(0 -100vmax);
+}
