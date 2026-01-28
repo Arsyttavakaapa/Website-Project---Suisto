@@ -37,9 +37,16 @@
 .main-bottom-margin {
     padding-bottom: 250px;
 }
-
 .aukioloajat{
     text-align: left;
     margin-left: 40%;
 }
+.padding {
+    padding-bottom: 50px;
+}
 
+@media (max-width: 770px) {
+    .main-bottom-margin {
+        padding-bottom: 5%;
+    }
+}
