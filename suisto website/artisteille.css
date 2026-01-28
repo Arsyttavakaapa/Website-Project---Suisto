@@ -7,8 +7,23 @@
 h1 {
     background-color: var(--keltainen-kuultava);
 }
-h2 {
-    font-display: auto;
+
+.container1 h2 {
+    margin-top: 16px;
+    margin-bottom: 6px;
+}
+
+.container1 h4 {
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.linkki:hover {
+    text-decoration: none;
+}
+.linkki, .linkki:visited, .linkki:active {
+    text-decoration: underline;
+    font-weight: bold;
 }
 .container1, .container2, .container3 {
     background-color: var(--keltainen-kuultava);
