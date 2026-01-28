@@ -17,8 +17,8 @@ h1 h2 h3{
 
 h1 {
     background-color: #f3b509;
-    margin-top: 12px;
     text-align: center;
+    padding: 8px 0; 
 }
 h3 {
     /*navigaatiobaarin headerien koon määrittäminen*/
@@ -110,5 +110,11 @@ footer a:hover {
 .info-section > div {
   width: 100%;
   margin: 0;
-  padding-bottom: 100px;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
+
+body {
+  margin: 0;
+}
+
