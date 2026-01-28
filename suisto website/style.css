@@ -4,10 +4,6 @@
     --musta: #000000;
     --valkoinen: #ffffffff;
 }
-body{
-
-    background: var(--valkoinen);
-}
 .block{
     background-color: var(--keltainen-kuultava);
     background-size: auto;
@@ -29,14 +25,17 @@ h1 h2 h3{
 h3 {
     /*navigaatiobaarin headerien koon määrittäminen*/
     font-size: large;
+    color: var(--musta)!important;
 }
 .bg {
     /*background kuvan kiinnittäminen ja asettelu tasutaan*/
+    background: var(--valkoinen);
     background-image: url(images/Suisto-backgroud.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
     background-attachment: fixed;
+
 }
 .full-bleed-keltainen {
     /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltaista*/
@@ -68,8 +67,13 @@ header img {
 .navbar {
     padding-left: 2%;
     padding-right: 2%;
+    background-color: var(--keltainen)!important;
+    color: var(--musta)!important;
 }
-
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+}
 main a, main a:active{
     color: var(--musta);
     text-decoration: none;
@@ -98,3 +102,15 @@ footer a:hover {
     color: var(--valkoinen);
     width: 2px;
 }
+@media (max-width: 575px) {
+    header img {
+        height: 50%;
+    }
+    .block{
+        width: 100%;
+    }
+    footer img{
+        display: none;
+    }
+}
+
