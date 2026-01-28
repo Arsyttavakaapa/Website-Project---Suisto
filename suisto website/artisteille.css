@@ -30,6 +30,9 @@ h3 {
     /*navigaatiobaarin headerien koon määrittäminen*/
     font-size: large;
 }
+h1 {
+    margin-top: 20px;
+}
 .bg {
     /*background kuvan kiinnittäminen ja asettelu tasutaan*/
     background-image: url(images/Suisto-backgroud.jpg);
@@ -120,21 +123,21 @@ h1 {
     text-decoration: underline;
     font-weight: bold;
 }
-.row {
+main .row {
     display: flex;
     justify-content: center;
 }
 .container1, .container2, .container4, .container5, .container6 {
     background-color: var(--keltainen-kuultava);
     width: 80%;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     padding-top: 32px;
     padding-bottom: 32px;
 }
 .container3 {
     background-color: var(--keltainen-kuultava);
     width: 80%;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     padding-inline: 0;
 }
 
@@ -154,5 +157,9 @@ h1 {
     /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltainen-kuultavaa*/
     box-shadow: 0 0 0 100vmax var(--keltainen-kuultava);
     clip-path: inset(0 -100vmax);
+}
+h1 {
+    padding: 8px;
+    margin-bottom: 40px;
 }
 
