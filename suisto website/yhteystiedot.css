@@ -95,11 +95,9 @@ footer a:hover {
 
 .info-section {
     background-color: var(--keltainen-kuultava);
+    width: 100%;
 }
 
-.info-card {
-  margin: 0;
-}
 
 .bg-suisto-yellow {
   margin-top: 0;
@@ -109,11 +107,8 @@ footer a:hover {
   margin-bottom: 0;
 }
 
-.info-section {
-  width: 100%;
-}
-
 .info-section > div {
   width: 100%;
   margin: 0;
+  padding-bottom: 100px;
 }
