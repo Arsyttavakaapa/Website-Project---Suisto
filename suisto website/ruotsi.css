@@ -45,3 +45,15 @@ h1 {
 .padding {
     padding-bottom: 50px;    
 }
+.oikealla{
+    margin-left: 20%;
+}
+@media (max-width: 770px) {
+    main{
+        display: flex;
+        justify-content: center;
+    }
+    .block{
+        margin: 0%;
+    }
+}

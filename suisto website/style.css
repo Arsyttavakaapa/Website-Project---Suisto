@@ -103,6 +103,10 @@ footer a:hover {
     color: var(--valkoinen);
     width: 2px;
 }
+.col-md-9 a:hover {
+    text-decoration: underline;
+   
+}
 @media (max-width: 575px) {
     header img {
         height: 50%;
@@ -113,8 +117,4 @@ footer a:hover {
     footer img{
         display: none;
     }
-}
-.col-md-9 a:hover {
-    text-decoration: underline;
-   
 }

@@ -83,3 +83,12 @@ h1 {
 h1 {
     padding: 8px;
 }
+
+@media (max-width: 575px) {
+    header img {
+        height: 50%;
+    }
+    .block{
+        width: 100%;
+    }
+}

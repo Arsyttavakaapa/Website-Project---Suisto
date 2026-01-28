@@ -50,3 +50,8 @@
         padding-bottom: 5%;
     }
 }
+@media (max-width: 400px) {
+    main img {
+        display: none;
+    }
+}
