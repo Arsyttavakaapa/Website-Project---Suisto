@@ -39,3 +39,9 @@ h1 {
 .main-top-margin {
     margin-top: 20px;
 }
+.main-bottom-margin {
+    margin-bottom: 100px;
+}
+.padding {
+    padding-bottom: 50px;    
+}
