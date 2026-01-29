@@ -27,6 +27,15 @@
     clip-path:polygon(-100vmax 0, 100% 0, 100% 100%, -100vmax 100%);
 }
 
+.bg {
+    /*background kuvan kiinnittäminen ja asettelu tasutaan*/
+    background: var(--valkoinen);
+    background-image: url(images/suisto_background2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right top;
+    background-attachment: fixed;
+}
 h1 {
     background-color: var(--keltainen-kuultava);
 }
