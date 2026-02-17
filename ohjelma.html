@@ -168,12 +168,20 @@
             for (let x in tapahtumat){;
                 text+='<div class="block full-bleed-keltainen-kuultava-vasemmalle">'+'<h2>'+tulkitsePaiva(tapahtumat[x].paiva)+' '+tapahtumat[x].date+' '+tapahtumat[x].event_name+' ('+tapahtumat[x].time+')'+'</h2><p>'
                     if(tapahtumat[x].description!=null){
+                    //jos tapahtumalla ei ole kuvasuta, sitä ei postata
                     text+=tapahtumat[x].description
                     }
                     else{
-                    text+=""
+                    text+="";
                     }
-                    text+='<br></p><p><a href="">Osta Lippu >></a><p></div><div class="padding"></div>';
+                    if(tapahtumat[x].link!=null){
+                    //jos tapahtumalla ei ole tiketti myyntipalveluun linkkiä, sitä ei postata
+                    text+='<br></p><p><a href="'+tapahtumat[x].link+'">Osta Lippu >></a><p>'
+                    }
+                    else{
+                    text+="<p><br></p>";
+                    }
+                    text+='</div><div class="padding"></div>';
             }
             document.getElementById("ohjelma").innerHTML=text;            
         }
