@@ -59,8 +59,6 @@ function lahetaEvents(lomake){
     events.event_date=lomake.event_date.value;
     events.event_time=lomake.event_time.value;
     events.description=lomake.description.value;
-    events.created=lomake.created.value;
-    events.updated=lomake.updated.value;
 	var jsonEvents=JSON.stringify(events);
 	
 	xmlhttp = new XMLHttpRequest();
@@ -72,7 +70,7 @@ function lahetaEvents(lomake){
 	};
 	xmlhttp.open("POST", "../create.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xmlhttp.send("events=" + jsonEvents);	
+	xmlhttp.send("events=" + encodeURIComponent(jsonEvents));
 }
 
 function tulostaEvents(events){
@@ -84,8 +82,8 @@ function tulostaEvents(events){
         text+="<td>"+events[x].id+"</td>";
         text+="<td>"+events[x].event_name+"</td>";
         text+="<td>";
-        text+="<button onclick='muokkaa("+events[x].id+", \""+events[x].event_name+"\")'>Muokkaa</button> ";
-        text+="<button onclick='poistakala("+events[x].id+")'>Poista</button>";
+        text+="<button onclick='muokkaa("+events[x].id+")'>Muokkaa</button> ";
+        text+="<button onclick='poista("+events[x].id+")'>Poista</button>";
         text+="</td>";
         text+="</tr>";
     }
@@ -93,15 +91,43 @@ function tulostaEvents(events){
     text+="</table>";
     document.getElementById("events").innerHTML=text;
 }
+function paivitaEvents(lomake){
+
+    if (!valittuId) {
+        alert("Valitse ensin muokattava tapahtuma");
+        return;
+    }
+
+    let events = {};
+    events.id = valittuId;
+    events.event_name = lomake.event_name.value;
+    events.event_date = lomake.event_date.value;
+    events.event_time = lomake.event_time.value;
+    events.description = lomake.description.value;
+
+    let jsonEvents = JSON.stringify(events);
+
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let data = JSON.parse(this.responseText);
+            tulostaEvents(data);
+        }
+    };
+
+    xmlhttp.open("POST", "../edit.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("events=" + encodeURIComponent(jsonEvents));
+}
+
 </script>
 <form id='lomake'>
 Event name: <input type='text' name='event_name' value='' placeholder='event name...'><br>
-Event date: <input type='text' name='event_date' value='' placeholder='event date...'><br>
-Event time: <input type='text' name='event_time' value='' placeholder='event time...'><br>
+Event date: <input type='date' name='event_date'><br>
+Event time: <input type='time' name='event_time'><br>
 Description: <input type='text' name='description' value='' placeholder='description...'><br>
-Created: <input type='text' name='created' value='' placeholder='created...'><br>
-Updated: <input type='text' name='updated' value='' placeholder='updated...'><br>
 <input type='button' name='ok' value='Lähetä' onclick='laheta(this.form);'><br>
+<input type='button' value='Päivitä' onclick='paivitaEvents(this.form);'><br>
 </form>
 <div id='result'>
 </div>
