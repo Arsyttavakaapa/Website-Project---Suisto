@@ -1,0 +1,103 @@
+:root {
+    --keltainen: #f3b509;
+    --keltainen-kuultava: #f3b509e7;
+    --musta: #000000;
+    --valkoinen: #ffffffff;
+}
+.full-bleed-keltainen {
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltaista*/
+    box-shadow: 0 0 0 100vmax var(--keltainen);
+    clip-path: inset(0 -100vmax);
+}
+
+.full-bleed-musta {
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --mustaa*/
+    box-shadow: 0 0 0 100vmax var(--musta);
+    clip-path: inset(0 -100vmax);
+}
+
+.full-bleed-keltainen-kuultava{
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltainen-kuultavaa*/
+    box-shadow: 0 0 0 100vmax var(--keltainen-kuultava);
+    clip-path: inset(0 -100vmax);
+}
+.full-bleed-keltainen-kuultava-vasemmalle{
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltainen-kuultavaa*/
+    box-shadow: 0 0 0 100vmax var(--keltainen-kuultava);
+    clip-path:polygon(-100vmax 0, 100% 0, 100% 100%, -100vmax 100%);
+}
+
+.bg {
+    /*background kuvan kiinnittäminen ja asettelu tasutaan*/
+    background: var(--valkoinen);
+    background-image: url(images/suisto_background2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right top;
+    background-attachment: fixed;
+}
+h1 {
+    background-color: var(--keltainen-kuultava);
+}
+
+.main-top-margin {
+    padding-top: 20px;
+}
+.main-bottom-margin {
+    padding-bottom: 250px;
+}
+.dropdown-margin {
+    padding-top: 20px;
+}
+.btn-secondary {
+    background-color: var(--keltainen);
+    color: var(--musta);
+    font-family: "Open Sans", sans-serif;
+}
+.dropdown-menu {
+    background-color: var(--keltainen-kuultava) !important;
+}
+.dropdown-item:active {
+    background-color: var(--musta) !important;
+}
+.dropdown-item.active {
+    background-color: var(--musta) !important;
+}
+.dropdown-item:hover {
+    background-color: var(--musta) !important;
+    color: var(--valkoinen);
+}
+.btn-secondary{
+    --bs-btn-hover-bg:var(--musta) !important;
+    --bs-btn-active-bg:var(--musta) !important;
+}
+.block{
+    width: 90%;
+    margin-bottom: 40px;
+    padding-bottom: 25px;
+    padding-top: 10px;
+}
+.block p {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+
+.block a {
+    text-decoration: underline;
+}
+.block a:hover {
+    text-decoration: none;
+}
+h1 {
+    padding: 8px;
+}
+
+@media (max-width: 575px) {
+    header img {
+        height: 50%;
+    }
+    .block{
+        width: 100%;
+    }
+}

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="ohjelma.css">
 </head>
-<body class="bg"  onload="luoValikko()">
+<body class="bg">
     <div class="container text-center">
         <header class="row full-bleed-keltainen">
             <div class="col-md-3">
@@ -54,19 +54,55 @@
             <div class="main-top-margin"></div>
             <h1 class="full-bleed-keltainen-kuultava">Ohjelma</h1>
             <div class="dropdown">
-            </div>
-            <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Valitse kuukausi
+                    Tammikuu 2026
                 </button>
-                <ul class="dropdown-menu" id="paivaysvalikko">
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Näytä Kaikki</a></li>
+                    <li><a class="dropdown-item active" href="#" aria-current="true">Tammikuu 2026</a></li>
+                    <li><a class="dropdown-item" href="#">Helmikuu 2026</a></li>
+                    <li><a class="dropdown-item" href="#">Maaliskuu 2026</a></li>
+                    <li><a class="dropdown-item" href="#">Huhtikuu 2026</a></li>
+                    <li><a class="dropdown-item" href="#">Toukokuu 2026</a></li>
+                    <li><a class="dropdown-item" href="#">Elokuu 2026</a></li>
                 </ul>
             </div>
-            <div id="ohjelma">
-
-            </div>
             <div class="dropdown-margin">
-            
+            <div class="block full-bleed-keltainen-kuultava-vasemmalle">
+                <h2>TO 29.1. Suiston Musavisa (20:00)</h2>
+                <br>
+                <p><a href="#">Lue lisää >></a></p>
+            </div>
+            <div class="padding"></div>
+            <div class="block full-bleed-keltainen-kuultava-vasemmalle">
+                <h2>PE 30.1. Death Hawks (21:00)</h2>
+                <p>Suomessa ja maailmalla paikkansa vakiinnuttaneen Death Hawksin mestarillinen Sun Future Moon -albumi täyttää loppuvuodesta 2025 pyöreitä. Ylistäviä arvosteluja kerännyt kulttiklassikko herää henkiin tammikuussa myös Hämeenlinnan Suisto-klubilla. <br>
+                <br>
+                Yhtye tarjoilee livenä juhlavuoden kunniaksi Sun Future Moonin avaran kauniita maisemia, ja jottei kyseessä olisi pelkkä nostalgiatrippi, keikoilla tullaan kokemaan myös tulevaisuuteen luotaavia hetkiä sekä uusia sovituksia Death Hawksin monipuolisesta auraalisesta historiasta. <br>
+                <br>
+                Luvassa siis täydellinen spektri aina 70-luvun rytmikkäästä krautpsykedeliasta, shamanistiseen esoteriaan, eskapismiin ja uuden aallon psykepoppiin. Tervetuloa läpi ajan matkalle Death Hawksin mieleen ja ytimeen! <br></p>
+                <br>
+                <p><a href="#">Lue lisää >></a><br>
+                <a href="https://www.tiketti.fi/death-hawks-suisto-klubi-hameenlinna-lippuja/113690">Osta Lippu >></a></p>
+            </div>
+            <div class="padding"></div>
+            <div class="block full-bleed-keltainen-kuultava-vasemmalle">
+                <h2>LA 31.1. Kube (21:00)</h2>
+                <p>Kube kuuluu Suomen räp-kentän kärkinimiin ja on kahminut lukuisia Emma-ehdokkuuksia yli 25 vuotisen uransa aikana. Kube tunnetaan erityisesti aidoista ja omaperäisistä lyriikoistaan, jotka kertovat hänen omista elämänkokemuksistaan. <br>
+                <br>
+                Artisti julkaisee musiikkia oman levy-yhtiönsä Killah Recordsin kautta sekä myös äänittää ja tuottaa kappaleensa itse. Kube on julkaissut muun muassa platinarajan rikkoneen Gasoo Ei Breikkei -albumin, joka arvioitiin Helsingin Sanomissa vuoden 2021 parhaaksi räp-albumiksi. Artistin suurimpia hittejä ovat triplaplatinaa striimannut 100 sekä tuplaplatinaa striimanneet Japanese Drip ja Plug.</p>
+                <br>
+                <p><a href="#">Lue lisää >></a><br>
+                <a href="https://www.tiketti.fi/kube-suisto-klubi-hameenlinna-lippuja/113193">Osta Lippu >></a></p>
+            </div>
+            <div class="padding"></div>
+            <div class="block full-bleed-keltainen-kuultava-vasemmalle">
+                <h2>SU 1.2. Drink Floyd plays Pink Floyd (19:00)</h2>
+                <p>Drink Floyd on Pink Floyd tribuuttibändi, joka esittää Dark Side of the Moonin, Wish You Were Herein ja The Wallin parhaita biisejä. Bändi soittaa kunnioittaen originaaleja, mutta eivät pelkää jammailua ja pieniä arri-muutoksia setissään.</p>
+                <br>
+                <p><a href="#">Lue lisää >></a><br>
+                <a href="https://www.tiketti.fi/drink-floyd-plays-pink-floyd-suisto-klubi-hameenlinna-lippuja/113847">Osta Lippu >></a></p>
+            </div>
             <div class="main-bottom-margin"></div>
             </div>
         </main>
@@ -114,129 +150,6 @@
             </footer>
     </div> <!--container-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<script>
-        function luoValikko(){
-            xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                    valikko=JSON.parse(this.responseText);
-                    tulostaValikko(valikko);
-            }
-            };
-            xmlhttp.open("GET", "./php/valikko.php", true);
-            xmlhttp.send();	
-        }
-        function tulostaValikko(valikko){
-            let text='<li> <button class="dropdown-item" type="button" onclick="naytaKaikki()">Näytä Kaikki</button></li>';
-            for (let x in valikko){
-                text+='<li> <button class="dropdown-item" type="button" onclick="lahetaPaivays('+valikko[x].month+","+valikko[x].year+')">'+tulkitseKuukausi(valikko[x].month)+valikko[x].year+'</button></li>';
-            }
-            document.getElementById("paivaysvalikko").innerHTML=text;
-        }
-        function lahetaPaivays(month, year){
-            xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                tulos=JSON.parse(this.responseText);
-                tulostaTapahtumat(tulos);
-                }
-            };
-            xmlhttp.open("GET", "./php/tapahtuma.php?month="+month+"&year="+year, true);
-            xmlhttp.send();
-        }
-        function naytaKaikki(){
-            xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                kaikki=JSON.parse(this.responseText);
-                tulostaTapahtumat(kaikki);
-                }
-            };
-            xmlhttp.open("GET", "./php/kaikkitapahtumat.php", true);
-            xmlhttp.send();	
-        }
-        function tulostaTapahtumat(tapahtumat){
-            let text='<div class="dropdown-margin">';
-            for (let x in tapahtumat){;
-                text+='<div class="block full-bleed-keltainen-kuultava-vasemmalle">'+'<h2>'+tulkitsePaiva(tapahtumat[x].paiva)+' '+tapahtumat[x].date+' '+tapahtumat[x].event_name+' ('+tapahtumat[x].time+')'+'</h2><p>'
-                    if(tapahtumat[x].description!=null){
-                    text+=tapahtumat[x].description
-                    }
-                    else{
-                    text+=""
-                    }
-                    text+='<br></p><p><a href="">Osta Lippu >></a><p></div><div class="padding"></div>';
-            }
-            document.getElementById("ohjelma").innerHTML=text;            
-        }
-        function tulkitseKuukausi(kuukausi){
-            if (kuukausi==1){
-                return "Tammikuu ";
-            }
-            else if(kuukausi==2){
-                return "Helmikuu ";
-            }
-            else if(kuukausi==3){
-                return "Maaliskuu ";
-            }
-            else if(kuukausi==4){
-                return "Huhtikuu ";
-            }
-            else if(kuukausi==5){
-                return "Toukokuu ";
-            }
-            else if(kuukausi==6){
-                return "Kesäkuu ";
-            }
-            else if(kuukausi==7){
-                return "Heinäkuu ";
-            }
-            else if(kuukausi==8){
-                return "Elokuu ";
-            }
-            else if(kuukausi==9){
-                return "Syyskuu ";
-            }
-            else if(kuukausi==10){
-                return "Lokakuu ";
-            }
-            else if(kuukausi==11){
-                return "Marraskuu ";
-            }
-            else if(kuukausi==12){
-                return "Joulukuu ";
-            }
-            else{
-                return "Virheellinen arvo"
-            }
-        }
-        function tulkitsePaiva(paiva){
-            if (paiva=="Monday"){
-                return "MA";
-            }
-            else if(paiva=="Tuesday"){
-                return "TI";
-            }
-            else if(paiva=="Wednesday"){
-                return "KE";
-            }
-            else if(paiva=="Thursday"){
-                return "TO";
-            }
-            else if(paiva=="Friday"){
-                return "PE";
-            }
-            else if(paiva=="Saturday"){
-                return "LA";
-            }
-            else if(paiva=="Sunday"){
-                return "SU";
-            }      
-            else {
-                return "Virheellinen Arvo ";
-        }
-        }
-</script>
 </body>
 </html>
 

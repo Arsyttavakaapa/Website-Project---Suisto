@@ -1,0 +1,123 @@
+:root {
+    --keltainen: #f3b509;
+    --keltainen-kuultava: #f3b509e7;
+    --musta: #000000;
+    --valkoinen: #ffffffff;
+}
+
+p {
+    /*Body tekstin fontti*/
+    font-family: "Open Sans", sans-serif;
+}
+
+h1 h2 h3{
+    /*Header fontti*/
+    font-family: "Roboto", sans-serif;
+}
+
+h1 {
+    background-color: var(--keltainen-kuultava);
+    text-align: center;
+    padding: 8px 0; 
+}
+h3 {
+    /*navigaatiobaarin headerien koon määrittäminen*/
+    font-size: large;
+}
+.bg { 
+    /*background kuvan kiinnittäminen ja asettelu tasutaan*/
+    background-image: url(images/suisto_background4.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+.full-bleed-keltainen {
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltaista*/
+    box-shadow: 0 0 0 100vmax var(--keltainen);
+    clip-path: inset(0 -100vmax);
+}
+
+.full-bleed-musta {
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --mustaa*/
+    box-shadow: 0 0 0 100vmax var(--musta);
+    clip-path: inset(0 -100vmax);
+}
+
+.full-bleed-keltainen-kuultava{
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltainen-kuultavaa*/
+    box-shadow: 0 0 0 100vmax var(--keltainen-kuultava);
+    clip-path: inset(0 -100vmax);
+}
+header {
+    background-color: var(--keltainen);
+}
+header img {
+    padding-left: 10%;
+}
+ header a, header a:active a:hover{
+    text-decoration: none;
+    color: var(--musta);
+ }
+.navbar {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+main a, main a:active{
+    color: var(--musta);
+    text-decoration: none;
+}
+main a:hover {
+    color: var(--musta);
+    text-decoration: underline;
+}
+
+footer {
+    padding: 20px;
+    background-color: black;
+    color: var(--keltainen);
+}
+footer a, a:active {
+    text-decoration: none;
+    color: var(--keltainen);
+}
+footer a:hover {
+    text-decoration: underline;
+    color: var(--keltainen);
+}
+
+.vr {
+    /*tällä luodaan footteriin tekstin erottavat "pilarit", dividerit*/
+    color: var(--valkoinen);
+    width: 2px;
+}
+
+.info-section {
+    background-color: var(--keltainen-kuultava);
+    width: 100%;
+}
+
+
+.bg-suisto-yellow {
+  margin-top: 0;
+}
+
+.bg-dark {
+  margin-bottom: 0;
+}
+
+.info-section > div {
+  width: 100%;
+  margin: 0;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+body {
+  margin: 0;
+}
+main {
+    margin-top: 20px;
+    margin-bottom: 100px;
+}

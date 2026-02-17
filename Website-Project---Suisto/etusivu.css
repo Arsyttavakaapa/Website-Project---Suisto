@@ -1,0 +1,57 @@
+:root {
+    --keltainen: #f3b509;
+    --keltainen-kuultava: #f3b509e7;
+    --musta: #000000;
+    --valkoinen: #ffffffff;
+}
+.full-bleed-keltainen {
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltaista*/
+    box-shadow: 0 0 0 100vmax var(--keltainen);
+    clip-path: inset(0 -100vmax);
+}
+
+.full-bleed-musta {
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --mustaa*/
+    box-shadow: 0 0 0 100vmax var(--musta);
+    clip-path: inset(0 -100vmax);
+}
+
+.full-bleed-keltainen-kuultava{
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltainen-kuultavaa*/
+    box-shadow: 0 0 0 100vmax var(--keltainen-kuultava);
+    clip-path: inset(0 -100vmax);
+}
+.full-bleed-keltainen-kuultava-vasemmalle{
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltainen-kuultavaa*/
+    box-shadow: 0 0 0 100vmax var(--keltainen-kuultava);
+    clip-path:polygon(-100vmax 0, 100% 0, 100% 100%, -100vmax 100%);
+}
+.full-bleed-keltainen-kuultava-oikealle{
+    /*tällä luodaan bound boxin rikkova tasutavärin efekti, käyttäen --keltainen-kuultavaa*/
+    box-shadow: 0 0 0 100vmax var(--keltainen-kuultava);
+    clip-path:polygon(0 0, 200vmax 0, 200vmax 100%, 0 100%);
+}
+.main-top-margin {
+    padding-top: 50px;
+}
+.main-bottom-margin {
+    padding-bottom: 250px;
+}
+.aukioloajat{
+    text-align: left;
+    margin-left: 40%;
+}
+.padding {
+    padding-bottom: 50px;
+}
+
+@media (max-width: 770px) {
+    .main-bottom-margin {
+        padding-bottom: 5%;
+    }
+}
+@media (max-width: 400px) {
+    main img {
+        display: none;
+    }
+}
