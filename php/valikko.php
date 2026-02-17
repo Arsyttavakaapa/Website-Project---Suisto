@@ -8,7 +8,9 @@ catch(Exception $e){
     exit;
 }
 $tulos=mysqli_query($yhteys, "select distinct month(event_date) as month, year(event_date) as year from events where event_date >= CURDATE() order by year(event_date), month(event_date);");
+//valitaan uniikki data jossa on eri kuukaudet ja vuosi, jossa päivämäärä on joko nyt tai tulevaisuudessa, järjestäen data päivämäärän mukaan
 while ($rivi=mysqli_fetch_object($tulos)){
+//lisäämme tulokset talteen
     $paivays=new class{};
     $paivays->month=$rivi->month;
     $paivays->year=$rivi->year;
