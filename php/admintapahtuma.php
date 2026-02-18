@@ -18,7 +18,7 @@ $month=isset($_GET["month"]) ? $_GET["month"] : "";
 //saamme kuukauden jonkla lisäämme muuttujaan
 $year=isset($_GET["year"]) ? $_GET["year"] : "";
 //saamme vuoden jonka lisäämme muuttujaan
-$sql='select *, DAYNAME(event_date) as paiva, time_format(event_time, "%H:%i") as time, date_format(event_date, "%e.%c") as date from events left outer join tiketti on events.id=tiketti.event_id where event_date >= CURDATE() and month(event_date)=? and year(event_date)=? order by event_date';
+$sql='select *, DAYNAME(event_date) as paiva, time_format(event_time, "%H:%i") as time, date_format(event_date, "%e.%c") as date from events left outer join tiketti on events.id=tiketti.event_id where month(event_date)=? and year(event_date)=? order by event_date';
 //valitaan data kahdesta tabesta jotka outer joinataan vasemmalle jossa kuukausi on ? ja vuosi on ?, sekä päiväys on nykyisen päivän ajalta tai sen jälkeen. Lisätään tulosteeseen viikonpäivän nimi, kellon aika formaatissa HH:MM ja päivämäärä formaatissa DD.MM, järjestäen tulos päivämäärän mukaan
 $stmt=mysqli_prepare($yhteys, $sql);
 mysqli_stmt_bind_param($stmt, 'ii', $month, $year);
