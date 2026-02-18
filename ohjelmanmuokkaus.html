@@ -128,7 +128,7 @@
                 document.getElementById("paivaysvalikko").innerHTML=text;
             }
             };
-            xmlhttp.open("GET", "./php/valikko.php", true);
+            xmlhttp.open("GET", "./php/adminvalikko.php", true);
             xmlhttp.send();	
         }
         function tulostaValikko(valikko){
@@ -154,7 +154,7 @@
                     virheilmoitusTapahtumissa()
                 }               
             };
-            xmlhttp.open("GET", "./php/tapahtuma.php?month="+month+"&year="+year, true);
+            xmlhttp.open("GET", "./php/admintapahtuma.php?month="+month+"&year="+year, true);
             xmlhttp.send();
         }
         function naytaKaikki(){
@@ -169,7 +169,7 @@
                     virheilmoitusTapahtumissa()
                 }
             };
-            xmlhttp.open("GET", "./php/kaikkitapahtumat.php", true);
+            xmlhttp.open("GET", "./php/adminkaikkitapahtumat.php", true);
             xmlhttp.send();	
         }
         function tulostaTapahtumat(tapahtumat){
