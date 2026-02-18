@@ -123,6 +123,10 @@
                     valikko=JSON.parse(this.responseText);
                     tulostaValikko(valikko);
             }
+            else{
+                let text='<li class="dropdown-item" href="#">Yhteysvirhe</li>';
+                document.getElementById("paivaysvalikko").innerHTML=text;
+            }
             };
             xmlhttp.open("GET", "./php/valikko.php", true);
             xmlhttp.send();	
@@ -146,6 +150,9 @@
                 tulos=JSON.parse(this.responseText);
                 tulostaTapahtumat(tulos);
                 }
+                else {
+                    virheilmoitusTapahtumissa()
+                }               
             };
             xmlhttp.open("GET", "./php/tapahtuma.php?month="+month+"&year="+year, true);
             xmlhttp.send();
@@ -157,6 +164,9 @@
                 if (this.readyState == 4 && this.status == 200) {
                 kaikki=JSON.parse(this.responseText);
                 tulostaTapahtumat(kaikki);
+                }
+                else {
+                    virheilmoitusTapahtumissa()
                 }
             };
             xmlhttp.open("GET", "./php/kaikkitapahtumat.php", true);
@@ -253,6 +263,10 @@
             else {
                 return "Virheellinen Arvo ";
         }
+        }
+        function virheilmoitusTapahtumissa(){
+            let text='<div class="dropdown-margin"><div class="block full-bleed-keltainen-kuultava-vasemmalle"><h2>Yhteysvirhe!</h2><br><p>Jokin meni pieleen</p><br><a href="ohjelma.html">Yritä Uudestaan</a></div>';
+            document.getElementById("ohjelma").innerHTML=text;
         }
 </script>
 </body>
