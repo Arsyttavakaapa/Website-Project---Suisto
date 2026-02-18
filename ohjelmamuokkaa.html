@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="ohjelma.css">
 </head>
-<body class="bg"  onload="luoValikko()">
+<body class="bg"  onload="luoValikko(), naytaKaikki(), document.getElementById('lomake').addEventListener('submit', function(event){event.preventDefault();})">
     <div class="container text-center">
         <header class="row full-bleed-keltainen">
             <div class="col-md-3">
@@ -63,7 +63,18 @@
                 </ul>
             </div>
             <div id="ohjelma">
-
+                <form id='lomake'>
+                Event name: <input type='text' name='event_name' value='' placeholder='event name...'><br>
+                Event date: <input type='date' name='event_date'><br>
+                Event time: <input type='time' name='event_time'><br>
+                Description: <input type='text' name='description' value='' placeholder='description...'><br>
+                <input type='button' name='ok' value='Lähetä' onclick='lahetaEvents(this.form);'><br>
+                <input type='button' value='Päivitä' onclick='paivitaEvents(this.form);'><br>
+                </form>
+                <div id='result'>
+                </div>
+                <div id='events'></div>
+        </main>
             </div>
             <div class="dropdown-margin">
             
@@ -113,7 +124,6 @@
             </div>
             </footer>
     </div> <!--container-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script>
         function luoValikko(){
             //funktio hakee databasesta kaiken informaation jota tarvitaan valikon luomiseksi ja lähettää sen "piirto" funktiolle
@@ -130,7 +140,7 @@
         function tulostaValikko(valikko){
             //Funktio luo valikon josta valitaan mitä kuukautta ja vuotta näytetään
             let text='<li> <button class="dropdown-item" type="button" onclick="naytaKaikki()">Näytä Kaikki</button></li>';
-            //luo valikon entryn josta valitaan kaikki tapahtumat
+            //luo valikon entryn josta valitaan kaikki events
             for (let x in valikko){;
                 //luo loopilla kaikki uniikit databasen kuukausi/vuosi valikot
                 text+='<li> <button class="dropdown-item" type="button" onclick="lahetaPaivays('+valikko[x].month+","+valikko[x].year+')">'+tulkitseKuukausi(valikko[x].month)+valikko[x].year+'</button></li>';
@@ -144,7 +154,7 @@
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                 tulos=JSON.parse(this.responseText);
-                tulostaTapahtumat(tulos);
+                tulostaevents(tulos);
                 }
             };
             xmlhttp.open("GET", "./php/tapahtuma.php?month="+month+"&year="+year, true);
@@ -156,10 +166,10 @@
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                 kaikki=JSON.parse(this.responseText);
-                tulostaTapahtumat(kaikki);
+                tulostaevents(kaikki);
                 }
             };
-            xmlhttp.open("GET", "./php/kaikkitapahtumat.php", true);
+            xmlhttp.open("GET", "./php/kaikkievents.php", true);
             xmlhttp.send();	
         }
 
@@ -179,90 +189,114 @@
             xmlhttp.open("GET", "./php/poista.php?id="+id, true);
             xmlhttp.send();
 }
-        function tulostaTapahtumat(tapahtumat){
+        function tulostaevents(events){
             //funktio jolla luodaan tapahtumien html tuloste sivulle
             let text='<div class="dropdown-margin">';
-            for (let x in tapahtumat){
-                text+='<div class="block full-bleed-keltainen-kuultava-vasemmalle">'+'<h2>'+tulkitsePaiva(tapahtumat[x].paiva)+' '+tapahtumat[x].date+' '+tapahtumat[x].tapahtumat_name+' ('+tapahtumat[x].time+')</h2><p>';
+            for (let x in events){
+                text+='<div class="block full-bleed-keltainen-kuultava-vasemmalle">'+'<h2>'+tulkitsePaiva(events[x].paiva)+' '+events[x].date+' '+events[x].events_name+' ('+events[x].time+')</h2><p>';
 
-                if(tapahtumat[x].description != null){
+                if(events[x].description != null){
                 //jos tapahtumalla ei ole kuvasuta, sitä ei postata
-                text+=tapahtumat[x].description;
+                text+=events[x].description;
                 }
                 else{
                 text+="";
                 }
-                if(tapahtumat[x].link!=null){
+                if(events[x].link!=null){
                 //jos tapahtumalla ei ole tiketti myyntipalveluun linkkiä, sitä ei postata
-                text+='<br></p><p><a href="'+tapahtumat[x].link+'">Osta Lippu >></a></p>';
+                text+='<br></p><p><a href="'+events[x].link+'">Osta Lippu >></a></p>';
                 } else {
                     text+="<p><br></p>";
                 }
 
                 // Lisätään Poista-nappi tapahtuman alle
-                text+='<p><button class="btn btn-danger btn-sm" onclick="poistaTapahtuma('+tapahtumat[x].id+')">Poista</button></p>';
+                text+='<p><button class="btn btn-danger btn-sm" onclick="poistaTapahtuma('+events[x].id+')">Poista</button></p>';
                 // Lisätty Muokkaa-nappi
-                text += "<tr id='rivi"+tapahtumat[x].id+"' " +
-                "data-event_name='"+tapahtumat[x].event_name+"' " +
-                "data-event_date='"+tapahtumat[x].event_date+"' " +
-                "data-event_time='"+tapahtumat[x].event_time+"' " +
-                "data-description='"+tapahtumat[x].description+"'>" +
-                "<td>"+tapahtumat[x].id+"</td>" +
-                "<td>"+tapahtumat[x].event_name+"</td>" +
-                "<td><button onclick='muokkaa("+tapahtumat[x].id+")'>Muokkaa</button></td></tr>";
+                text+='<p><button class="btn btn-primary btn-sm" onclick="muokkaaevents('+events[x].id+')">Muokkaa</button></p>';
 
                 text+='</div><div class="padding"></div>';
             }
         document.getElementById("ohjelma").innerHTML=text;
 }          
-function lahetatapahtumat(lomake){
+let valittuId = null;
+
+// Lähetä uusi tapahtuma
+function lahetaEvents(lomake){
     let tapahtuma = {
         event_name: lomake.event_name.value,
         event_date: lomake.event_date.value,
         event_time: lomake.event_time.value,
         description: lomake.description.value
     };
+
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            tulostatapahtumat(JSON.parse(this.responseText));
+        if(this.readyState === 4 && this.status === 200){
+            naytaTapahtumat(JSON.parse(this.responseText));
+            lomake.reset(); // Tyhjennä lomake lähetyksen jälkeen
         }
-    }
+    };
     xmlhttp.open("POST", "./php/create.php", true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("tapahtumat=" + encodeURIComponent(JSON.stringify(tapahtuma)));
 }
 
-function paivitatapahtumat(lomake, id){
-    if(!id) { alert("Valitse ensin tapahtuma"); return; }
+// Päivitä valittu tapahtuma
+function paivitaEvents(lomake){
+    if(!valittuId) { 
+        alert("Valitse ensin tapahtuma"); 
+        return; 
+    }
+
     let tapahtuma = {
-        id: id,
+        id: valittuId,
         event_name: lomake.event_name.value,
         event_date: lomake.event_date.value,
         event_time: lomake.event_time.value,
         description: lomake.description.value
     };
+
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            tulostatapahtumat(JSON.parse(this.responseText));
+        if(this.readyState === 4 && this.status === 200){
+            naytaTapahtumat(JSON.parse(this.responseText));
+            lomake.reset();
+            valittuId = null; // Nollaa valinta päivityksen jälkeen
         }
-    }
+    };
     xmlhttp.open("POST", "./php/edit.php", true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlhttp.send("tapahtumat=" + encodeURIComponent(JSON.stringify(tapahtuma)));
 }
-let valittuId = null;
 
+// Täytä lomake muokkausta varten
 function muokkaa(id){
     valittuId = id;
-    // Täytetään lomake valituilla arvoilla
-    let rivi = document.getElementById('rivi'+id);
-    document.getElementById('lomake').event_name.value = rivi.dataset.event_name;
-    document.getElementById('lomake').event_date.value = rivi.dataset.event_date;
-    document.getElementById('lomake').event_time.value = rivi.dataset.event_time;
-    document.getElementById('lomake').description.value = rivi.dataset.description;
+    let rivi = document.getElementById('rivi' + id);
+    let lomake = document.getElementById('lomake');
+    lomake.event_name.value = rivi.dataset.event_name;
+    lomake.event_date.value = rivi.dataset.event_date;
+    lomake.event_time.value = rivi.dataset.event_time;
+    lomake.description.value = rivi.dataset.description;
 }
+
+// Näytä tapahtumat JSONista
+function naytaTapahtumat(tapahtumat){
+    let html = '<div class="dropdown-margin">';
+    tapahtumat.forEach(t => {
+        html += `
+        <div class="block full-bleed-keltainen-kuultava-vasemmalle">
+            <h2>${t.paiva} ${t.event_date} ${t.event_name} (${t.event_time})</h2>
+            <p>${t.description || ''}</p>
+            <p><button class="btn btn-danger btn-sm" onclick="poistaTapahtuma(${t.id})">Poista</button></p>
+            <p><button class="btn btn-primary btn-sm" onclick="muokkaa(${t.id})">Muokkaa</button></p>
+        </div>
+        <div class="padding"></div>`;
+    });
+    html += '</div>';
+    document.getElementById('ohjelma').innerHTML = html;
+}
+
 
 
 function luoValikko(){
@@ -280,7 +314,7 @@ function luoValikko(){
         function tulostaValikko(valikko){
             //Funktio luo valikon josta valitaan mitä kuukautta ja vuotta näytetään
             let text='<li> <button class="dropdown-item" type="button" onclick="naytaKaikki()">Näytä Kaikki</button></li>';
-            //luo valikon entryn josta valitaan kaikki tapahtumat
+            //luo valikon entryn josta valitaan kaikki events
             for (let x in valikko){
                 //luo loopilla kaikki uniikit databasen kuukausi/vuosi valikot
                 text+='<li> <button class="dropdown-item" type="button" onclick="lahetaPaivays('+valikko[x].month+","+valikko[x].year+')">'+tulkitseKuukausi(valikko[x].month)+valikko[x].year+'</button></li>';
@@ -294,7 +328,7 @@ function luoValikko(){
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                 tulos=JSON.parse(this.responseText);
-                tulostaTapahtumat(tulos);
+                tulostaevents(tulos);
                 }
             };
             xmlhttp.open("GET", "./php/tapahtuma.php?month="+month+"&year="+year, true);
@@ -306,27 +340,27 @@ function luoValikko(){
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                 kaikki=JSON.parse(this.responseText);
-                tulostaTapahtumat(kaikki);
+                tulostaevents(kaikki);
                 }
             };
-            xmlhttp.open("GET", "./php/kaikkitapahtumat.php", true);
+            xmlhttp.open("GET", "./php/kaikkievents.php", true);
             xmlhttp.send();	
         }
-        function tulostaTapahtumat(tapahtumat){
+        function tulostaevents(events){
             //funktio jolla luodaan tapahtumien html tuloste sivulle
             let text='<div class="dropdown-margin">';
-            for (let x in tapahtumat){;
-                text+='<div class="block full-bleed-keltainen-kuultava-vasemmalle">'+'<h2>'+tulkitsePaiva(tapahtumat[x].paiva)+' '+tapahtumat[x].date+' '+tapahtumat[x].tapahtumat_name+' ('+tapahtumat[x].time+')'+'</h2><p>'
-                    if(tapahtumat[x].description!=null){
+            for (let x in events){;
+                text+='<div class="block full-bleed-keltainen-kuultava-vasemmalle">'+'<h2>'+tulkitsePaiva(events[x].paiva)+' '+events[x].date+' '+events[x].events_name+' ('+events[x].time+')'+'</h2><p>'
+                    if(events[x].description!=null){
                     //jos tapahtumalla ei ole kuvasuta, sitä ei postata
-                    text+=tapahtumat[x].description
+                    text+=events[x].description
                     }
                     else{
                     text+="";
                     }
-                    if(tapahtumat[x].link!=null){
+                    if(events[x].link!=null){
                     //jos tapahtumalla ei ole tiketti myyntipalveluun linkkiä, sitä ei postata
-                    text+='<br></p><p><a href="'+tapahtumat[x].link+'">Osta Lippu >></a></p>'
+                    text+='<br></p><p><a href="'+events[x].link+'">Osta Lippu >></a></p>'
                     }
                     else{
                     text+="<p><br></p>";
@@ -406,5 +440,3 @@ function luoValikko(){
         }
         }
 </script>
-</body>
-</html>

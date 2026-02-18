@@ -1,59 +1,51 @@
 <?php
+header('Content-Type: application/json; charset=utf-8');
 
-$json = $_POST["events"] ?? "";
-
-if (empty($json)) {
-    exit("Virheellinen pyyntö");
+if (empty($_POST['tapahtumat'])) {
+    echo json_encode(['error' => 'Ei tapahtumatietoa vastaanotettu']);
+    exit;
 }
 
-$event = json_decode($json);
-
-if (!$event || 
-    !isset($event->id,
-            $event->event_name,
-            $event->event_date,
-            $event->event_time,
-            $event->description)) {
-    exit("Puuttuvia tietoja");
+$tapahtuma = json_decode($_POST['tapahtumat']);
+if (!$tapahtuma || empty($tapahtuma->id)) {
+    echo json_encode(['error' => 'JSON ei ollut kelvollinen tai id puuttuu']);
+    exit;
 }
 
-$yhteys = mysqli_connect("db", "root", "password", "suistodb");
+$id = $tapahtuma->id;
+$event_name = $tapahtuma->event_name ?? '';
+$event_date = $tapahtuma->event_date ?? '';
+$event_time = $tapahtuma->event_time ?? '';
+$description = $tapahtuma->description ?? '';
 
+$initials = parse_ini_file("../suisto website/.ht_suisto.ini");
+$yhteys = mysqli_connect($initials["server"], $initials["username"], $initials["password"], $initials["databasename"]);
 if (!$yhteys) {
-    exit("Yhteysvirhe");
+    echo json_encode(['error' => 'Tietokantayhteys epäonnistui']);
+    exit;
 }
 
-$sql = "UPDATE events 
-        SET event_name=?, event_date=?, event_time=?, description=? 
-        WHERE id=?";
+// Päivitetään tapahtuma
+$stmt = $yhteys->prepare("UPDATE events SET event_name=?, event_date=?, event_time=?, description=? WHERE id=?");
+$stmt->bind_param("ssssi", $event_name, $event_date, $event_time, $description, $id);
+$stmt->execute();
+$stmt->close();
 
-$stmt = mysqli_prepare($yhteys, $sql);
-
-mysqli_stmt_bind_param(
-    $stmt,
-    "ssssi",
-    $event->event_name,
-    $event->event_date,
-    $event->event_time,
-    $event->description,
-    $event->id
-);
-
-mysqli_stmt_execute($stmt);
-
-mysqli_stmt_close($stmt);
-
-/* Return updated list */
-$tulos = mysqli_query($yhteys, 
-    "SELECT * FROM events ORDER BY event_date, event_time");
-
+// Palautetaan kaikki tapahtumat JSONina
+$sql = "SELECT *, DAYNAME(event_date) as paiva, TIME_FORMAT(event_time, '%H:%i') as time, DATE_FORMAT(event_date, '%e.%c') as date FROM events WHERE event_date >= CURDATE() ORDER BY event_date";
+$tulos = mysqli_query($yhteys, $sql);
 $events = [];
-
 while ($rivi = mysqli_fetch_object($tulos)) {
-    $events[] = $rivi;
+    $e = new stdClass();
+    $e->id = $rivi->id;
+    $e->event_name = $rivi->event_name;
+    $e->event_date = $rivi->event_date;
+    $e->event_time = $rivi->time;
+    $e->description = $rivi->description;
+    $e->paiva = $rivi->paiva;
+    $events[] = $e;
 }
 
 mysqli_close($yhteys);
-
 echo json_encode($events);
 ?>
