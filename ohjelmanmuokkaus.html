@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suistoklubi - Live Music Club » Kulttuuri, keikat, yksityistilaisuudet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ohjelma.css">
+</head>
+<body class="bg"  onload="luoValikko()">
+    <div class="container text-center">
+        <header class="row full-bleed-keltainen">
+            <div class="col-md-3">
+                <a href="index.html"><img src="images/suisto%20logo%20transparent.png" alt="SUISTO logo" style="max-height: 60px;"></a>
+            </div>
+            <div class="col-md-9 text-end">
+                <a href="#">EN</a>
+                <a href="ruotsi.html">SE</a>
+            </div>
+            <div class="row col-md-8">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                            <a class="nav-link" href="index.html"><h3>Etusivu</h3></a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="ohjelma.html"><h3>Ohjelma</h3></a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="https://www.tiketti.fi/suisto-klubi-hameenlinna-paikka/317#l=317"><h3>Liput</h3></a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="artisteille.html"><h3>Artisteille</h3></a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="yhteystiedot.html"><h3>Yhteystiedot</h3></a>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main class=row>
+            <div class="main-top-margin"></div>
+            <h1 class="full-bleed-keltainen-kuultava">Ohjelma</h1>
+            <div class="dropdown">
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Valitse kuukausi
+                </button>
+                <ul class="dropdown-menu" id="paivaysvalikko">
+                </ul>
+            </div>
+            <div id="ohjelma">
+
+            </div>
+            <div class="dropdown-margin">
+            
+            <div class="main-bottom-margin"></div>
+            </div>
+        </main>
+        <footer class="d-flex full-bleed-musta">
+
+            <div class="col align-self-center">
+                <a href="index.html">Etusivu</a><br>
+                <a href="ohjelma.html">Ohjelma</a><br>
+                <a href="https://www.tiketti.fi/suisto-klubi-hameenlinna-paikka/317#l=317">Liput</a><br>
+                <a href="artisteille.html">Artisteille</a><br>
+                <a href="yhteystiedot.html">Yhteystiedot</a><br>
+            </div>
+
+            <div class="vr align-self-center" style="height: 100px;">
+            </div>
+
+            <div class="col align-self-center">
+                Aukioloajat:<br>
+                SU-TI <b>SULJETTU</b><br>
+                KE 16-23<br>
+                TO 16-24<br>
+                PE-LA 16-02<br>
+                <br>
+                <a href="https://www.google.fi/maps/place/Suistoklubi/@60.9315674,24.5200536,12z/data=!4m5!3m4!1s0x468e5da25c683561:0xfef3431ac8b0ec5d!8m2!3d60.9979137!4d24.4771422?shorturl=1">Katuosoite:<br>
+                Viipurintie 4 (sisäpiha)<br>
+                13200 Hämeenlinna</a><br>
+                <br>
+            </div>
+
+            <div class="vr align-self-center" style="height: 100px;">
+            </div>
+
+            <div class="col align-self-center">
+                <a href="https://www.facebook.com/suistoklubi/">Facebook</a><br>
+                <a href="https://www.instagram.com/suisto/">Instagram</a><br>
+                <a href="https://x.com/Suisto">Twitter</a><br>
+                </div>
+
+            <div class="vr align-self-center" style="height: 100px;">
+            </div>
+
+            <div class="col align-self-center">
+                <a href="index.html"><img src="images/suisto%20logo%20transparent%20white.png" alt="SUISTO logo" style="height: 50px;"></a>
+            </div>
+            </footer>
+    </div> <!--container-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+        function luoValikko(){
+            //funktio hakee databasesta kaiken informaation jota tarvitaan valikon luomiseksi ja lähettää sen "piirto" funktiolle
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                    valikko=JSON.parse(this.responseText);
+                    tulostaValikko(valikko);
+            }
+            };
+            xmlhttp.open("GET", "./php/valikko.php", true);
+            xmlhttp.send();	
+        }
+        function tulostaValikko(valikko){
+            //Funktio luo valikon josta valitaan mitä kuukautta ja vuotta näytetään
+            let text='<li> <button class="dropdown-item" type="button" onclick="naytaKaikki()">Näytä Kaikki</button></li>';
+            //luo valikon entryn josta valitaan kaikki tapahtumat
+            for (let x in valikko){
+                //luo loopilla kaikki uniikit databasen kuukausi/vuosi valikot
+                text+='<li> <button class="dropdown-item" type="button" onclick="lahetaPaivays('+valikko[x].month+","+valikko[x].year+')">'+tulkitseKuukausi(valikko[x].month)+valikko[x].year+'</button></li>';
+            }
+            document.getElementById("paivaysvalikko").innerHTML=text;
+            //lähettää muodostetun valikon paivaysvalikko nimiseen <div>iin
+        }
+        function lahetaPaivays(month, year){
+            //lähettää kuukauden ja vuoden oihjelmalle jolla hakea kaikki tiedot joita tarvitaan dropdown menun tulosteen rakentamiseksi
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                tulos=JSON.parse(this.responseText);
+                tulostaTapahtumat(tulos);
+                }
+            };
+            xmlhttp.open("GET", "./php/tapahtuma.php?month="+month+"&year="+year, true);
+            xmlhttp.send();
+        }
+        function naytaKaikki(){
+            //funktio joka hakee tiedot *kaikista* tapahtumista
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                kaikki=JSON.parse(this.responseText);
+                tulostaTapahtumat(kaikki);
+                }
+            };
+            xmlhttp.open("GET", "./php/kaikkitapahtumat.php", true);
+            xmlhttp.send();	
+        }
+        function tulostaTapahtumat(tapahtumat){
+            //funktio jolla luodaan tapahtumien html tuloste sivulle
+            let text='<div class="dropdown-margin">';
+            for (let x in tapahtumat){;
+                text+='<div class="block full-bleed-keltainen-kuultava-vasemmalle">'+'<h2>'+tulkitsePaiva(tapahtumat[x].paiva)+' '+tapahtumat[x].date+' '+tapahtumat[x].event_name+' ('+tapahtumat[x].time+')'+'</h2><p>'
+                    if(tapahtumat[x].description!=null){
+                    //jos tapahtumalla ei ole kuvasuta, sitä ei postata
+                    text+=tapahtumat[x].description
+                    }
+                    else{
+                    text+="";
+                    }
+                    if(tapahtumat[x].link!=null){
+                    //jos tapahtumalla ei ole tiketti myyntipalveluun linkkiä, sitä ei postata
+                    text+='<br></p><p><a href="'+tapahtumat[x].link+'">Osta Lippu >></a><p>'
+                    }
+                    else{
+                    text+="<p><br></p>";
+                    }
+                    text+='</div><div class="padding"></div>';
+            }
+            document.getElementById("ohjelma").innerHTML=text;            
+        }
+        function tulkitseKuukausi(kuukausi){
+        // funktio joka muuntaa databasesta saadut kuukaudet haluttuun luettavaan muotoon
+            if (kuukausi==1){
+                return "Tammikuu ";
+            }
+            else if(kuukausi==2){
+                return "Helmikuu ";
+            }
+            else if(kuukausi==3){
+                return "Maaliskuu ";
+            }
+            else if(kuukausi==4){
+                return "Huhtikuu ";
+            }
+            else if(kuukausi==5){
+                return "Toukokuu ";
+            }
+            else if(kuukausi==6){
+                return "Kesäkuu ";
+            }
+            else if(kuukausi==7){
+                return "Heinäkuu ";
+            }
+            else if(kuukausi==8){
+                return "Elokuu ";
+            }
+            else if(kuukausi==9){
+                return "Syyskuu ";
+            }
+            else if(kuukausi==10){
+                return "Lokakuu ";
+            }
+            else if(kuukausi==11){
+                return "Marraskuu ";
+            }
+            else if(kuukausi==12){
+                return "Joulukuu ";
+            }
+            else{
+                return "Virheellinen arvo"
+            }
+        }
+        function tulkitsePaiva(paiva){
+        // funktio joka muuntaa databasesta saadut päivät haluttuun luettavaan muotoon
+            if (paiva=="Monday"){
+                return "MA";
+            }
+            else if(paiva=="Tuesday"){
+                return "TI";
+            }
+            else if(paiva=="Wednesday"){
+                return "KE";
+            }
+            else if(paiva=="Thursday"){
+                return "TO";
+            }
+            else if(paiva=="Friday"){
+                return "PE";
+            }
+            else if(paiva=="Saturday"){
+                return "LA";
+            }
+            else if(paiva=="Sunday"){
+                return "SU";
+            }      
+            else {
+                return "Virheellinen Arvo ";
+        }
+        }
+</script>
+</body>
+</html>
+

@@ -1,8 +1,9 @@
 <?php
-
+error_reporting(E_ALL ^ E_WARNING);
 mysqli_report(MYSQLI_REPORT_ALL ^ MYSQLI_REPORT_INDEX);
+$initials=parse_ini_file("../.ht_suisto.ini");
 try{
-    $yhteys=mysqli_connect("db", "root", "password", "suistodb");
+    $yhteys=mysqli_connect($initials["server"],$initials["username"],$initials["password"],$initials["databasename"],);
 }
 catch(Exception $e){
     header("Location:../html/yhteysvirhe.html");
@@ -19,7 +20,7 @@ mysqli_stmt_bind_param($stmt, 'ii', $month, $year);
 //lisäämme ? paikalle arvot saaduista muuttujista
 mysqli_stmt_execute($stmt);
 //suoritamme komennon
-mysqli_stmt_bind_result($stmt, $id, $event_name, $event_date, $event_time, $description, $created, $updated, $tiketti_id, $event_id, $link, $paiva, $time, $date);
+mysqli_stmt_bind_result($stmt, $id, $event_name, $event_date, $event_time, $description, $created, $updated, $tiketti_id, $event_id, $link, $link_created, $link_updated, $paiva, $time, $date);
 //pyydämme komennosta saadun tuloksen TÄRKEÄ: Pitää pyytää *kaikki* tuloksessa saadut arvot
 $tulos=mysqli_stmt_get_result($stmt);
 //Lisäämme saadun tuloksen talteen olioon

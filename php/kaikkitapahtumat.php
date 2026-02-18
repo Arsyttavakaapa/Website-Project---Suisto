@@ -1,7 +1,9 @@
 <?php
+error_reporting(E_ALL ^ E_WARNING);
 mysqli_report(MYSQLI_REPORT_ALL ^ MYSQLI_REPORT_INDEX);
+$initials=parse_ini_file("../.ht_suisto.ini");
 try{
-    $yhteys=mysqli_connect("db", "root", "password", "suistodb");
+    $yhteys=mysqli_connect($initials["server"],$initials["username"],$initials["password"],$initials["databasename"],);
 }
 catch(Exception $e){
     header("Location:../html/yhteysvirhe.html");
