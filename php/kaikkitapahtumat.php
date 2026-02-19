@@ -28,7 +28,7 @@ $sql = "
            DATE_FORMAT(event_date, '%Y-%m-%d') AS date,
            tiketti.link
     FROM events
-    LEFT JOIN tiketti ON events.id = tiketti.events_id
+    LEFT JOIN tiketti ON events.id = tiketti.event_id
     WHERE event_date >= CURDATE()
     ORDER BY event_date
 ";
