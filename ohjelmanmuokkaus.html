@@ -172,6 +172,22 @@
             xmlhttp.open("GET", "./php/adminkaikkitapahtumat.php", true);
             xmlhttp.send();	
         }
+        function poistaTapahtuma(id){
+            //funktio joka avaa popup-ikkunan varmistaakseen tapahtuman poiston
+        if(!confirm("Haluatko varmasti poistaa tämän tapahtuman?")){
+        return;
+            }
+
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    naytaKaikki(); 
+                }
+            };
+
+            xmlhttp.open("GET", "./php/poista.php?id="+id, true);
+            xmlhttp.send();
+        }
         function tulostaTapahtumat(tapahtumat){
             //funktio jolla luodaan tapahtumien html tuloste sivulle
             let text='<div class="dropdown-margin">';
@@ -191,6 +207,8 @@
                     else{
                     text+="<p><br></p>";
                     }
+                    // Lisätään Poista-nappi tapahtuman alle
+                    text+='<p><button class="btn btn-danger btn-sm" onclick="poistaTapahtuma('+tapahtumat[x].id+')">Poista</button></p>';
                     text+='</div><div class="padding"></div>';
             }
             document.getElementById("ohjelma").innerHTML=text;            
