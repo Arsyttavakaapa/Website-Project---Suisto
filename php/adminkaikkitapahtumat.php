@@ -22,9 +22,9 @@ while ($rivi=mysqli_fetch_object($tulos)){
 //lisäämme tuloksen tiedot olioon, joka laitetaan listaan
     $tapahtuma=new class{};
     $tapahtuma->id=$rivi->id;
-    $tapahtuma->date=$rivi->date;
+    $tapahtuma->event_date=$rivi->event_date;
     $tapahtuma->event_name=$rivi->event_name;
-    $tapahtuma->time=$rivi->time;
+    $tapahtuma->event_time=$rivi->event_time;
     $tapahtuma->description=$rivi->description;
     $tapahtuma->paiva=$rivi->paiva;
     $tapahtuma->link=$rivi->link;
