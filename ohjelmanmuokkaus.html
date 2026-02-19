@@ -53,6 +53,18 @@
         <main class=row>
             <div class="main-top-margin"></div>
             <h1 class="full-bleed-keltainen-kuultava">Ohjelma</h1>
+            <div class="main-top-margin"></div>
+            <div class="block" style="width: 100%;">
+                <h2>Tapahtuma</h2>
+                <form id="tapahtumalomake" action='./php/muokkaa.php' method='post'>
+                <input type='text' id="event_name" name='nimi' value='' placeholder="Tapahtuman nimi..."><br><br>
+                <textarea rows="5" cols="50" placeholder="Tapahtuman kuvaus..."></textarea><br>
+                <input type='date'></input>
+                <input type='time'></input><br><br>
+                <input type='text' placeholder="Linkki kauppaan..."></input><br><br>
+                <input type='submit' name='ok' value='Lähetä' onclick=''><br>
+                </form>
+            </div>
             <div class="dropdown">
             </div>
             <div class="dropdown">
@@ -207,8 +219,8 @@
                     else{
                     text+="<p><br></p>";
                     }
-                    // Lisätään Poista-nappi tapahtuman alle
-                    text+='<p><button class="btn btn-danger btn-sm" onclick="poistaTapahtuma('+tapahtumat[x].id+')">Poista</button></p>';
+                    // Lisätään Muokkaa- ja Poista-nappi tapahtuman alle
+                    text+='<p><button type="button" class="btn btn-light btn-sm" onclick="funktio('+')">Muokkaa</button> <button class="btn btn-danger btn-sm" onclick="poistaTapahtuma('+tapahtumat[x].id+')">Poista</button></p>';
                     text+='</div><div class="padding"></div>';
             }
             document.getElementById("ohjelma").innerHTML=text;            
